@@ -1,6 +1,6 @@
 import math
 from selenium import webdriver
-from selenium.common import NoSuchElementException
+from selenium.common import NoSuchElementException, WebDriverException
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import time
@@ -15,7 +15,7 @@ FIRM_DETAIL_PAGE_LOAD = 0.5  # set the load times (second)
 ITEMS_PER_PAGE = 25  # items / page
 EXCEL_FILE_NAME = "email_by_name_0_9.xlsx"  # here you must provide the Excel file name
 # here you must provide the base link, and after the '&page=' you must add a '{}' because it's a dynamic url
-BASE_LINK = "https://www.zoznam.sk/katalog/Spravodajstvo-informacie/Abecedny-zoznam-firiem/A/sekcia.fcgi?sid=1173&so=&page={}&desc=&shops=&kraj=&okres=&cast=&attr="
+BASE_LINK = "https://www.zoznam.sk/katalog/Spravodajstvo-informacie/Abecedny-zoznam-firiem/0-9/sekcia.fcgi?sid=1172&so=&page={}&desc=&shops=&kraj=&okres=&cast=&attr="
 
 # ---------------------------------------------------------------------------------------------------------------- #
 
@@ -40,7 +40,12 @@ if not LAST_PAGE:
     LAST_PAGE = math.ceil(page_number / ITEMS_PER_PAGE)
 for page_num in range(FIRST_PAGE,
                       LAST_PAGE + 1):  # the number of all pages (the +1 is because the loop run from 1 - e.g 24, but the 24 is not included)
-    driver.get(BASE_LINK.format(page_num))
+    try:
+        driver.get(BASE_LINK.format(page_num))
+        # Add your page processing code here
+    except WebDriverException as e:
+        print(f"An error occurred while retrieving page {page_num}: {e}")
+        break
     time.sleep(PAGE_LOAD)
     for firm_num in range(1, ITEMS_PER_PAGE + 1):  # 26 the actual elements on a page (26 not included, so 25)
         try:
