@@ -17,7 +17,7 @@ service_path = Service(chrome_driver_path)
 driver = webdriver.Chrome(service=service_path)
 # get the page
 emails = []
-for i in range(23, 24): ## 24 the number of all pages / now is 24 (24 not included, so 23) but you can change here
+for i in range(1, 24): ## 24 the number of all pages / now is 24 (24 not included, so 23) but you can change here
     driver.get(f"https://www.zoznam.sk/katalog/Spravodajstvo-informacie/Abecedny-zoznam-firiem/0-9/sekcia.fcgi?sid=1172&so=&page={i}&desc=&shops=&kraj=&okres=&cast=&attr=")
     time.sleep(1)
     try:
