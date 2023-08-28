@@ -9,7 +9,7 @@ import openpyxl
 # ------------------------------------------ HERE YOU CAN CHANGE CONDITIONS ------------------------------------ #
 
 FIRST_PAGE = 1  # set the first page, from which page you want to start the program
-LAST_PAGE = False  # provide last page if you don't want to loop through all pages
+LAST_PAGE = False  # provide last page if you don't want to loop through all pages / else leave false
 PAGE_LOAD = 0.5  # set the load times (second)
 FIRM_DETAIL_PAGE_LOAD = 0.5  # set the load times (second)
 ITEMS_PER_PAGE = 25  # items / page
