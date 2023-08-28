@@ -8,11 +8,14 @@ import openpyxl
 
 # ------------------------------------------ HERE YOU CAN CHANGE CONDITIONS ------------------------------------ #
 
-# set the load time (second)
+# set the page, from which page you want to start the program
 FIRST_PAGE = 1
+# set the load times (second)
 PAGE_LOAD = 0.5
 FIRM_DETAIL_PAGE_LOAD = 0.1
+# items / page
 ITEMS_PER_PAGE = 25
+# here you must provide the Excel file name
 EXCEL_FILE_NAME = "email_by_name_0_9.xlsx"
 ## here you must provide the base link, and after the '&page=' you must add a '{}' because it's a dynamic url
 BASE_LINK = "https://www.zoznam.sk/katalog/Spravodajstvo-informacie/Abecedny-zoznam-firiem/0-9/sekcia.fcgi?sid=1172&so=&page={}&desc=&shops=&kraj=&okres=&cast=&attr="
