@@ -17,7 +17,7 @@ service_path = Service(chrome_driver_path)
 driver = webdriver.Chrome(service=service_path)
 # get the page
 emails = []
-for i in range(1, 24): ## 24 the number of all pages / now is 24 (24 not included, so 23) but you can change here
+for i in range(23, 24): ## 24 the number of all pages / now is 24 (24 not included, so 23) but you can change here
     driver.get(f"https://www.zoznam.sk/katalog/Spravodajstvo-informacie/Abecedny-zoznam-firiem/0-9/sekcia.fcgi?sid=1172&so=&page={i}&desc=&shops=&kraj=&okres=&cast=&attr=")
     time.sleep(1)
     try:
@@ -25,8 +25,10 @@ for i in range(1, 24): ## 24 the number of all pages / now is 24 (24 not include
     except NoSuchElementException:
         pass
     for i in range(1, 26): ##26 the actual elements on a page (26 not included, so 25)
-        driver.find_element(By.XPATH, f'/html/body/div[3]/div/div[2]/div[2]/section/div[5]/div/ul/li[{i}]/div/div[2]/h2/a').click()
-
+        try:
+            driver.find_element(By.XPATH, f'/html/body/div[3]/div/div[2]/div[2]/section/div[5]/div/ul/li[{i}]/div/div[2]/h2/a').click()
+        except NoSuchElementException:
+            break
         driver.switch_to.window(driver.window_handles[1])
         time.sleep(1)
         try:
